@@ -1,29 +1,58 @@
+<div align="center">
+
 # Movie Review Sentiment Analysis
 
-A binary sentiment-classification project that predicts whether an IMDb movie review expresses a positive or negative opinion.
+**Predict whether an IMDb movie review expresses positive or negative sentiment**
+
+![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange?logo=tensorflow) ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python) ![NLP](https://img.shields.io/badge/Field-NLP-purple)
+
+</div>
 
 ## Project overview
-- Dataset: IMDb movie reviews provided by `tf.keras.datasets.imdb`
-- Framework: TensorFlow / Keras
-- Task: NLP text classification
-- Classes: Negative (0) and Positive (1)
+
+An NLP binary-classification project that processes IMDb movie reviews and predicts their sentiment: **negative (0)** or **positive (1)**. The notebook uses Keras text preprocessing and an embedding-based neural network.
+
+## Result
+
+![IMDb sentiment test accuracy](assets/test-accuracy.svg)
+
+| Metric | Recorded result |
+|---|---:|
+| Test accuracy | **86.35%** |
+| Training reviews | 25,000 |
+| Test reviews | 25,000 |
+| Vocabulary size | 9,908 |
+
+*The accuracy and dataset details are taken from the supplied notebook's recorded outputs.*
 
 ## Workflow
+
 1. Load the IMDb training and test reviews.
-2. Clean review text by lowercasing, removing HTML break tags and punctuation.
-3. Convert text to integer sequences with Keras `TextVectorization`.
-4. Train an embedding-based neural network using Embedding, Dropout, GlobalAveragePooling1D and a sigmoid output layer.
-5. Evaluate the exported preprocessing-plus-model pipeline on the held-out test set.
-6. Try sample reviews and inspect their predicted sentiment scores.
+2. Clean review text by lowercasing and removing HTML break tags and punctuation.
+3. Split training data into training and validation subsets.
+4. Convert text into integer sequences with Keras `TextVectorization`.
+5. Train an embedding-based neural network with dropout and global average pooling.
+6. Evaluate the exported preprocessing-and-model pipeline on the held-out test set.
+7. Try sample reviews and inspect predicted sentiment scores.
 
-## Recorded result
-**Test accuracy: 86.35%** (from the notebook's recorded evaluation output).
+## Model components
 
-## Run
-Open `movie_review_sentiment_analysis.ipynb` in Jupyter or Google Colab and run the cells in order. The first run downloads the IMDb dataset through Keras, so internet access is needed for that download.
+- TextVectorization for vocabulary building and tokenization
+- Embedding layer for learned word representations
+- Dropout for regularization
+- GlobalAveragePooling1D for sequence aggregation
+- Dense sigmoid output for binary sentiment prediction
 
-## Dependencies
-See [requirements.txt](requirements.txt).
+## Run the project
+
+Open [`movie_review_sentiment_analysis.ipynb`](movie_review_sentiment_analysis.ipynb) in Jupyter Notebook or Google Colab and run the cells in order. Keras downloads the IMDb dataset on the first run.
+
+## Repository files
+
+- `movie_review_sentiment_analysis.ipynb` — text preprocessing, model training and sample predictions
+- `requirements.txt` — Python dependencies
+- `assets/test-accuracy.svg` — test-result chart
 
 ## Notes
-This is an educational NLP project. Results may vary with library versions, random seeds and runtime environment.
+
+This is an educational NLP project. Predictions are model estimates, not a definitive measure of a review's meaning. Results may vary with random seeds and library versions.
